@@ -1,0 +1,21 @@
+{
+  "name": "node-tnef",
+  "version": "1.0.0",
+  "description": "Node wrapper for tnef",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "rebuild": "cd src/vendor/tnef && make clean && make && cd $INIT_CWD && node-gyp clean && node-gyp rebuild",
+    "configure": "cd src/vendor/tnef && autoreconf && ./configure && cd $INIT_CWD && node-gyp configure"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "node-addon-api": "^3.0.0"
+  },
+  "devDependencies": {
+    "nan": "^2.14.1"
+  }
+}

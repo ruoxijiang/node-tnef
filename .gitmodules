@@ -1,0 +1,3 @@
+[submodule "src/vendor/tnef"]
+	path = src/vendor/tnef
+	url = github:ruoxijiang/tnef.git
