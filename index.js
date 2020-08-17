@@ -15,9 +15,12 @@ function extractFiles(file_path, output_dir){
         }
     });
 }
-extractFiles('/PathTo/winmail.dat', '/PathTo/').then(ret=>{
-    console.log(ret[0].size);
-});
+/**
+ * Extracts a Microsoft Tnef file and returns a Promise containing extracted file info
+ * @param {string} file path
+ * @param {string} extract destination
+ * @return {Promise} returns a Promise containing extracted file info
+ */
 module.exports = {
     extractFiles: extractFiles,
 }

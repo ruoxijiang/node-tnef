@@ -1,21 +1,38 @@
 {
-  "name": "node-tnef",
-  "version": "1.0.0",
+  "name": "@ruoxijiang/node-tnef",
+  "version": "0.1.0",
   "description": "Node wrapper for tnef",
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --reporter spec",
+    "install": "npm run configure && npm run rebuild",
     "rebuild": "cd src/vendor/tnef && make clean && make && cd $INIT_CWD && node-gyp clean && node-gyp rebuild",
     "configure": "cd src/vendor/tnef && autoreconf && ./configure && cd $INIT_CWD && node-gyp configure"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
+  "homepage": "https://github.com/ruoxijiang/node-tnef",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ruoxijiang/node-tnef.git"
+  },
+  "readme": "README.md",
+  "keywords": [
+    "tnef",
+    "node native",
+    "microsoft"
+  ],
+  "author": "Ruoxi Jiang",
+  "license": "GPLv3",
   "dependencies": {
     "bindings": "^1.5.0",
     "node-addon-api": "^3.0.0"
   },
   "devDependencies": {
-    "nan": "^2.14.1"
+    "chai": "^4.2.0",
+    "mocha": "^8.1.1",
+    "nan": "^2.14.1",
+    "rimraf": "^3.0.2"
   }
 }
