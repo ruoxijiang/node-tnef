@@ -1,3 +1,4 @@
 [submodule "src/vendor/tnef"]
 	path = src/vendor/tnef
 	url = https://github.com/ruoxijiang/tnef.git
+	branch = node_native
