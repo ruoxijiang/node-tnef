@@ -26,6 +26,7 @@ function runAutoreconf(){
     runShell('autoreconf', ['-f'], pwd, runConfigure, 'autoreconf');
 }
 function runGitUpdateSubmodule(){
-    runShell('git', ['submodule', 'update', '--init','--recursive'], __dirname, runAutoreconf, 'Update git submodule');
+    const gitPath = path.join(__dirname, 'src', 'vendor');
+    runShell('git', ['clone', 'https://www.github.com/ruoxijiang/tnef.git'], gitPath, runAutoreconf, 'Grab git submodule');
 }
 runGitUpdateSubmodule();
