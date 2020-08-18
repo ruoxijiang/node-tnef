@@ -1,6 +1,7 @@
 const { spawn } = require('child_process');
 const path = require('path');
-const pwd = path.join(__dirname, 'src', 'vendor', 'tnef');
+const gitPath = path.join(__dirname, 'src', 'vendor');
+const pwd = path.join(gitPath, 'tnef');
 function runShell(cmd,args,pwd, cb, stage){
     const shell = spawn(cmd, args, {cwd: pwd, env: process.env, shell: true});
     shell.stdout.on('data', data => {
@@ -26,7 +27,9 @@ function runAutoreconf(){
     runShell('autoreconf', ['-f'], pwd, runConfigure, 'autoreconf');
 }
 function runGitUpdateSubmodule(){
-    const gitPath = path.join(__dirname, 'src', 'vendor');
     runShell('git', ['clone', 'https://www.github.com/ruoxijiang/tnef.git'], gitPath, runAutoreconf, 'Grab git submodule');
 }
-runGitUpdateSubmodule();
+function removeTNEF(){
+    runShell('rm', ['-rf', 'tnef'], gitPath, runGitUpdateSubmodule, 'Remove tnef folder');
+}
+removeTNEF();
