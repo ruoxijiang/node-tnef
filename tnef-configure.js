@@ -1,6 +1,5 @@
 const { spawn } = require('child_process');
 const path = require('path');
-console.log(__dirname);
 const pwd = path.join(__dirname, 'src', 'vendor', 'tnef');
 function runShell(cmd,args,pwd, cb, stage){
     const shell = spawn(cmd, args, {cwd: pwd, env: process.env, shell: true});
@@ -26,4 +25,7 @@ function runConfigure(){
 function runAutoreconf(){
     runShell('autoreconf', ['-f'], pwd, runConfigure, 'autoreconf');
 }
-runAutoreconf();
+function runGitUpdateSubmodule(){
+    runShell('git', ['submodule', 'update', '--init','--recursive'], __dirname, runAutoreconf, 'Update git submodule');
+}
+runGitUpdateSubmodule();
