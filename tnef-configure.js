@@ -35,4 +35,4 @@ function runGitUpdateSubmodule(){
 function removeTNEF(){
     runShell('rm', ['-rf', 'tnef'], gitPath, runGitUpdateSubmodule, 'Remove tnef folder');
 }
-runAutoreconf();
+removeTNEF();
