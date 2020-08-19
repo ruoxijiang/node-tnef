@@ -16,8 +16,8 @@ function runShell(cmd,args,pwd, cb, stage){
             cb();
         }
     });
-    shell.on('error', ()=>{
-        console.log(`${stage}:error`);
+    shell.on('error', data=>{
+        console.log(`${stage}:error ${data}`);
     })
 }
 function runNodeGyp(){
