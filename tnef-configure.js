@@ -1,24 +1,18 @@
-const { spawn } = require('child_process');
+const { exec } = require('child_process');
 const path = require('path');
 const gitPath = path.join(__dirname, 'src', 'vendor');
 const pwd = path.join(gitPath, 'tnef');
 function runShell(cmd,args,pwd, cb, stage){
-    const shell = spawn(cmd, args, {cwd: pwd, env: process.env, shell: '/bin/bash'});
-    shell.stdout.on('data', data => {
-        console.log(`${stage}:std: ${data}`);
-    });
-    shell.stderr.on('data', data=>{
-        console.log(`${stage}:stderr: ${data}`);
-    })
-    shell.on('close', ()=>{
-        console.log(`${stage} complete`);
+    exec(`${cmd} ${args.join(' ')}`, {cwd: pwd, env: process.env, shell: '/bin/bash'}, (err, stdout, stderr)=>{
+        if(error){
+            console.log(`${stage}:error ${error}`);
+        }
+        console.log(`${stage}:std: ${stdout}`);
+        console.log(`${stage}:sterr: ${stderr}`);
         if(cb){
             cb();
         }
     });
-    shell.on('error', data=>{
-        console.log(`${stage}:error ${data}`);
-    })
 };
 function runNodeGyp(){
     runShell('node-gyp', ['configure'], __dirname, null, 'node-gyp configure');
