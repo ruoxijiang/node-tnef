@@ -16,6 +16,9 @@ function runShell(cmd,args,pwd, cb, stage){
             cb();
         }
     });
+    shell.on('error', ()=>{
+        console.log(`${stage}:error`);
+    })
 }
 function runNodeGyp(){
     runShell('node-gyp', ['configure'], __dirname, null, 'node-gyp configure');
@@ -27,9 +30,9 @@ function runAutoreconf(){
     runShell('autoreconf', ['-f'], pwd, runConfigure, 'autoreconf');
 }
 function runGitUpdateSubmodule(){
-    runShell('git', ['clone', 'https://www.github.com/ruoxijiang/tnef.git'], gitPath, runAutoreconf, 'Grab git submodule');
+    runShell('git', ['clone', 'https://github.com/ruoxijiang/tnef.git'], gitPath, runAutoreconf, 'Grab git submodule');
 }
 function removeTNEF(){
     runShell('rm', ['-rf', 'tnef'], gitPath, runGitUpdateSubmodule, 'Remove tnef folder');
 }
-removeTNEF();
+runAutoreconf();
