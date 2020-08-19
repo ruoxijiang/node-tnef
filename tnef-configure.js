@@ -1,9 +1,9 @@
-const { exec } = require('child_process');
+const { spawn } = require('child_process');
 const path = require('path');
 const gitPath = path.join(__dirname, 'src', 'vendor');
 const pwd = path.join(gitPath, 'tnef');
 function runShell(cmd,args,pwd, cb, stage){
-    const shell = exec(cmd, args, {cwd: pwd, env: process.env, shell: '/bin/bash'});
+    const shell = spawn(cmd, args, {cwd: pwd, env: process.env, shell: '/bin/bash'});
     shell.stdout.on('data', data => {
         console.log(`${stage}:std: ${data}`);
     });
