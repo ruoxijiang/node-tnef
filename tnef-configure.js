@@ -3,7 +3,7 @@ const path = require('path');
 const gitPath = path.join(__dirname, 'src', 'vendor');
 const pwd = path.join(gitPath, 'tnef');
 function runShell(cmd,args,pwd, cb, stage){
-    exec(`${cmd} ${args.join(' ')}`, {cwd: pwd, env: process.env, shell: '/bin/bash'}, (err, stdout, stderr)=>{
+    exec(`${cmd} ${args.join(' ')}`, {cwd: pwd, env: process.env}, (err, stdout, stderr)=>{
         if(error){
             console.log(`${stage}:error ${error}`);
         }
