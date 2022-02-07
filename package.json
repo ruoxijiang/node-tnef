@@ -10,7 +10,7 @@
     "test": "mocha --reporter spec",
     "install": "npm run configure && npm run rebuild",
     "rebuild": "cd $INIT_CWD/src/vendor/tnef && make clean && make && cd $INIT_CWD && node-gyp clean && node-gyp rebuild",
-    "configure": "echo $INIT_CWD && cd $INIT_CWD/src/vendor/tnef && autoreconf -f && ./configure && cd $INIT_CWD && node-gyp configure"
+    "configure": "echo $INIT_CWD && cd $INIT_CWD/src/vendor/tnef && autoreconf -f -i && ./configure && cd $INIT_CWD && node-gyp configure"
   },
   "homepage": "https://github.com/ruoxijiang/node-tnef",
   "repository": {
